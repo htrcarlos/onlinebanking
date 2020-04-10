@@ -8,7 +8,8 @@
         <meta charset="UTF-8"> <!-- HTML5 charset -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-         <script src="javascript/signup.js"></script>
+        <script src="javascript/base.js"></script>
+        <script src="javascript/signup.js"></script>
 
 
 
@@ -18,36 +19,33 @@
 
     </head>
 
-    <body>		
-      
+    <body>
+
 
         <nav class="navbar navbar-expand-sm bg-light navbar-light">
             <a class="navbar-brand" href="index.html">Online Banking</a>
         </nav>
 
         <div class="mx-auto w-50" style="margin-top:6%">
-            <form method="get" action="http://localhost:49000/api/onlinebanking/createCustomer">
-                <h5 class="text-center">New Client</h5>
-                <div class="form-group">
-                    <label for="email">Name</label>
-                    <input type="name" class="form-control" placeholder="Enter your full name" id="name">
-                </div>
-                <div class="form-group">
-                    <label for="address">Address</label>
-                    <input type="address" class="form-control" placeholder="Enter your address" id="address">
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" class="form-control" placeholder="Enter your email" id="email">
-                </div>
-                <div class="form-group">
-                    <label for="credentials">Credentials</label>
-                    <input type="password" class="form-control" placeholder="Enter your credentials" id="credentials">
-                    <h6><small>Only numbers</small></h6>
-                </div>
-                <button type="submit" id="signupButton" class="btn btn-secondary btn-block" style="margin-top:4%" >OK</button>  
-            </form>
-        
+            <h5 class="text-center">New Client</h5>
+            <div class="form-group">
+                <label for="email">Name</label>
+                <input type="name" class="form-control" placeholder="Enter your full name" id="name">
+            </div>
+            <div class="form-group">
+                <label for="address">Address</label>
+                <input type="address" class="form-control" placeholder="Enter your address" id="address">
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" placeholder="Enter your email" id="email">
+            </div>
+            <div class="form-group">
+                <label for="credentials">Credentials</label>
+                <input type="password" class="form-control" placeholder="Enter your credentials" id="credentials">
+                <h6><small>Only numbers</small></h6>
+            </div>
+            <button type="submit" id="signupButton" class="btn btn-secondary btn-block" style="margin-top:4%" >OK</button>
         </div>
 
 

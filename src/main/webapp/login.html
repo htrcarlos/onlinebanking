@@ -8,7 +8,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-         <script src="javascript/login.js"></script>
+        <script src="javascript/base.js"></script>
+        <script src="javascript/login.js"></script>
 
         <!--[if lt IE 9]>
         <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -16,26 +17,22 @@
 
     </head>
 
-    <body>		
+    <body>
         <nav class="navbar navbar-expand-sm bg-light navbar-light">
             <a class="navbar-brand" href="index.html">Online Banking</a>
         </nav>
 
         <div class="mx-auto w-50" style="margin-top:6%">
-            <form method="post" action="http://localhost:49000/api/onlinebanking/customerLogin">
-                <h5 class="text-center">Please sign in</h5>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" name="email" class="form-control" placeholder="Enter email" id="email">
-                </div>
-                <div class="form-group">
-                    <label for="credentials">Credentials</label>
-                    <input type="password" name="credentials" class="form-control" placeholder="Enter credentials" id="credentials">
-                </div>
-                <input type="submit" id="loginButton" class="btn btn-secondary btn-block" style="margin-top:3%" value="OK">
-
-            </form>
-
+            <h5 class="text-center">Please sign in</h5>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" name="email" class="form-control" placeholder="Enter email" id="email">
+            </div>
+            <div class="form-group">
+                <label for="credentials">Credentials</label>
+                <input type="password" name="credentials" class="form-control" placeholder="Enter credentials" id="credentials">
+            </div>
+            <input type="submit" id="loginButton" class="btn btn-secondary btn-block" style="margin-top:3%" value="OK">
         </div>
 
 

@@ -1,22 +1,20 @@
 
 $(function () {
     $("#loginButton").click(function () {
-       
-        var email = $("#email").val();
-        var credentials = $("#credentials").val();
-        
-        var stringUrl = "http://localhost:49000/api/onlinebanking/customerLogin?email="+email+"&credentials="+credentials;
-
-
         $.ajax({
-            url: stringUrl 
-       }).then(function (data) {
-            
-            var queryString = "?email="+data.email;
-            window.location.href = "options.html"+queryString;
-
+            type: 'POST',
+            url: 'api/onlinebanking/customerLogin',
+            data: JSON.stringify({
+                email: $("#email").val(),
+                credentials: parseInt($("#credentials").val())
+            }),
+            dataType: 'json',
+            contentType: 'application/json'
+       }).then(function (customer) {
+            if (customer == null) { return; }
+            setCustomerIdentifier(customer.identifier);
+            window.location.href = 'options.html';
         });
     });
-
 });
 
