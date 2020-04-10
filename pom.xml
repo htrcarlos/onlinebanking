@@ -6,7 +6,7 @@
     <version>version1</version>
     <packaging>war</packaging>
     <name>OnlineBanking</name>
-    
+
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -15,7 +15,7 @@
         <failOnMissingWebXml>false</failOnMissingWebXml>
         <jakartaee>8.0</jakartaee>
     </properties>
-    
+
     <dependencies>
         <dependency>
             <groupId>com.google.code.gson</groupId>
@@ -30,18 +30,27 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-<groupId>org.glassfish.jersey.containers</groupId>
-<artifactId>jersey-container-servlet</artifactId>
-<version>2.0</version>
-</dependency>
-<dependency>
-    <groupId>org.apache.httpcomponents</groupId>
-    <artifactId>httpclient</artifactId>
-    <version>4.5.12</version>
-</dependency>
-
+            <groupId>org.glassfish.jersey.containers</groupId>
+            <artifactId>jersey-container-servlet</artifactId>
+            <version>2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.12</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.activation</groupId>
+            <artifactId>activation</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>2.3.1</version>
+        </dependency>
     </dependencies>
-    
+
      <build>
         <plugins>
             <plugin>
@@ -90,22 +99,21 @@
                 </executions>
             </plugin>
             <plugin>
-<groupId>org.eclipse.jetty</groupId>
-<artifactId>jetty-maven-plugin</artifactId>
-<version>9.2.4.v20141103</version>
-<configuration>
-<httpConnector>
-<host>127.0.0.1</host>
-<port>49000</port>
-</httpConnector>
-<scanIntervalSeconds>3</scanIntervalSeconds>
-<webAppConfig>
-<!--defaultsDescriptor>src/test/resources/jetty-maven-plugin-webdefault.xml<
-/defaultsDescriptor -->
-</webAppConfig>
-</configuration>
-</plugin>
-
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>9.4.26.v20200117</version>
+                <configuration>
+                    <httpConnector>
+                        <host>127.0.0.1</host>
+                        <port>49000</port>
+                    </httpConnector>
+                    <scanIntervalSeconds>3</scanIntervalSeconds>
+                    <webAppConfig>
+                        <!--defaultsDescriptor>src/test/resources/jetty-maven-plugin-webdefault.xml<
+                        /defaultsDescriptor -->
+                    </webAppConfig>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 </project>
