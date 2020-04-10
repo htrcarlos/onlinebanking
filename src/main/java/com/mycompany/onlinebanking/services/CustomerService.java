@@ -20,12 +20,11 @@ public class CustomerService {
     public static List<Customer> customers = new ArrayList();
     public static List<Account> accounts = new ArrayList();
 
-    public List<Customer> createCustomers() {
-
-        Customer c1 = new Customer("Brian May", "45 Dalcassian", "brian@gmail.com",123);
-        Customer c2 = new Customer("Roger Taylor", "40 Connaught Street", "roger@gmail.com",123);
-        Customer c3 = new Customer("John Deacon", "2 Santry Avenue", "john@gmail.com",123);
-        Customer c4 = new Customer("Paul McCartney", "5 Melville Cove", "paul@gmail.com",123);
+    public CustomerService() {
+        Customer c1 = new Customer(1, "Brian May", "45 Dalcassian", "brian@gmail.com", 123);
+        Customer c2 = new Customer(2, "Roger Taylor", "40 Connaught Street", "roger@gmail.com", 123);
+        Customer c3 = new Customer(3, "John Deacon", "2 Santry Avenue", "john@gmail.com", 123);
+        Customer c4 = new Customer(4, "Paul McCartney", "5 Melville Cove", "paul@gmail.com", 123);
 
         customers.add(c1);
         customers.add(c2);
@@ -49,11 +48,10 @@ public class CustomerService {
         c3.addAcount(a6);
         c4.addAcount(a7);
         c4.addAcount(a8);
-
-        return this.customers;
     }
 
     public Customer createCustomer(Customer c) {
+        c.setIdentifier(customers.size() + 1);
         customers.add(c);
         return c;
     }
@@ -182,13 +180,13 @@ public class CustomerService {
 
         return null;
     }
-    
+
     public Customer customerLogin(String email, int credentials){
          for (Customer c : customers) {
              if (c.getEmail().equalsIgnoreCase(email) && c.getCredentials()==credentials)
                  return c;
          }
-         
+
          return null;
     }
 
@@ -196,12 +194,12 @@ public class CustomerService {
        return customers;
     }
 
-    public Customer getCustomer(String email) {
+    public Customer getCustomer(int identifier) {
         for (Customer c : customers) {
-             if (c.getEmail().equalsIgnoreCase(email))
+             if (c.getIdentifier() == identifier)
                  return c;
          }
-         
+
          return null;
     }
 }

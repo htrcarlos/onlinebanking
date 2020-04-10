@@ -14,19 +14,33 @@ import java.util.List;
  */
 
 public class Customer {
-    
+
+    private int identifier;
     private String name;
     private String address;
     private String email;
     private int credentials;
     private List<Account> accounts;
 
-    public Customer(String name, String address, String email, int credentials) {
+    public Customer(int identifier,
+                    String name,
+                    String address,
+                    String email,
+                    int credentials) {
+        this.identifier = identifier;
         this.name = name;
         this.address = address;
         this.email = email;
         this.credentials = credentials;
         this.accounts = new ArrayList();
+    }
+
+    public int getIdentifier() {
+        return identifier;
+    }
+
+    public void setIdentifier(int identifier) {
+        this.identifier = identifier;
     }
 
     public String getName() {
@@ -69,13 +83,4 @@ public class Customer {
         this.accounts.add(account);
     }
 
-   
-    
-    
-    
-    
-    
-    
-    
-    
 }
