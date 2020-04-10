@@ -7,7 +7,8 @@
         <title> Online Banking </title>
         <meta charset="UTF-8"> <!-- HTML5 charset -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script src="javascript/base.js"></script>
         <script src="javascript/options.js"></script>
 
 
@@ -20,7 +21,7 @@
 
     </head>
 
-    <body>		
+    <body>
         <nav class="navbar navbar-expand-sm bg-light navbar-light">
             <a class="navbar-brand" href="index.html">Online Banking</a>
             <ul class="navbar-nav">
@@ -30,29 +31,29 @@
 
                 <li class="nav-item">
                     <a class="nav-link" href="index.html">Sign out</a>
-                </li>	
+                </li>
             </ul>
         </nav>
         <div class="mx-auto w-50" style="margin-top:6%">
             <div class="row" id="customerData" style="margin-top:3%">
 
 
-                
+
             </div>
             <h5 class="text-center">Transactions</h5>
 
             <div class="row" style="margin-top:3%">
 
-                <button type="button" class="btn btn-outline-secondary btn-block" onclick="window.location.href = 'balance.html';">Balance</button>  
+                <button type="button" class="btn btn-outline-secondary btn-block" onclick="window.location.href = 'balance.html';">Balance</button>
                 <button type="button" class="btn btn-outline-secondary  btn-block">Transfer</button>
-                <button type="button" class="btn btn-outline-secondary btn-block" onclick="window.location.href = 'lodgement.html';">Lodgement</button>  
+                <button type="button" class="btn btn-outline-secondary btn-block" onclick="window.location.href = 'lodgement.html';">Lodgement</button>
                 <button type="button" class="btn btn-outline-secondary  btn-block">Withdrawal</button>
                 <button type="button" class="btn btn-outline-secondary  btn-block">History of Transactions</button>
 
 
             </div>
 
-        </div>	
+        </div>
     </body>
 
 </html>
