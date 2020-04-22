@@ -190,9 +190,9 @@ $(document).ready(function () {
                 if (isNaN(value) || value <= 0) {
                     document.getElementById("invalidTransfer").innerHTML = "<h6 style='visibility:visible' id='invalidWithdrawal' class='text-danger'><small>Invalid value entered</small></h6>";
                 } else {
-                 var i = $('#sourceAccount').val();
-                var sortCode1 = customer.accounts[i].sortCode;
-                var accountNumber1 = customer.accounts[i].accountNumber;
+
+                var sortCode1 = sortCode;
+                var accountNumber1 = accountNumber;
 
                 var i = $('#destinAcccount').val();
 

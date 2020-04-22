@@ -19,7 +19,6 @@ public class CustomerService {
 
     public static List<Customer> customers = new ArrayList();
 
-    ; 
     //public static List<Account> accounts = new ArrayList();
 
     public CustomerService() {
@@ -150,12 +149,15 @@ public class CustomerService {
                                     double newBalance = a1.getCurrentBalance() - value;
                                     Transaction t1 = new Transaction('T', value, "Transfer OUT", newBalance);
                                     a1.addTransaction(t1);
+                                    a1.setCurrentBalance(newBalance);
 
                                     transactions.add(t1);
 
                                     newBalance = a2.getCurrentBalance() + value;
                                     Transaction t2 = new Transaction('T', value, "Transfer IN", newBalance);
                                     a2.addTransaction(t2);
+                                    a2.setCurrentBalance(newBalance);
+
                                     transactions.add(t2);
 
                                     return transactions;
@@ -222,9 +224,9 @@ public class CustomerService {
                     j++;
 
                 }
-            }  
+            }
         }
          return allAccounts;
     }
-    
+
 }
