@@ -11,7 +11,6 @@ import java.util.Date;
  *
  * @author Luciana
  */
-
 public class Transaction {
 
     private char type;

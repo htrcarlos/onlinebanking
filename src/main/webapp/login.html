@@ -5,7 +5,7 @@
     <head>
 
         <title> Online Banking </title>
-        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+        <meta charset="UTF-8"> <!-- HTML5 charset -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
         <script src="javascript/base.js"></script>
@@ -25,12 +25,14 @@
         <div class="mx-auto w-50" style="margin-top:6%">
             <h5 class="text-center">Please sign in</h5>
             <div class="form-group">
+
                 <label for="email">Email</label>
                 <input type="email" name="email" class="form-control" placeholder="Enter email" id="email">
             </div>
             <div class="form-group">
                 <label for="credentials">Credentials</label>
                 <input type="password" name="credentials" class="form-control" placeholder="Enter credentials" id="credentials">
+                <h6 style="visibility:hidden" id="invalid" class="text-danger"><small>Invalid email/credentials</small></h6>
             </div>
             <input type="submit" id="loginButton" class="btn btn-secondary btn-block" style="margin-top:3%" value="OK">
         </div>

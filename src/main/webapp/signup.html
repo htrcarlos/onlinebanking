@@ -26,31 +26,38 @@
             <a class="navbar-brand" href="index.html">Online Banking</a>
         </nav>
 
-        <div class="mx-auto w-50" style="margin-top:6%">
+        <div class="mx-auto w-50" style="margin-top:6%" id='newClientDiv'>
             <h5 class="text-center">New Client</h5>
-            <div class="form-group">
-                <label for="email">Name</label>
-                <input type="name" class="form-control" placeholder="Enter your full name" id="name">
-            </div>
-            <div class="form-group">
-                <label for="address">Address</label>
-                <input type="address" class="form-control" placeholder="Enter your address" id="address">
-            </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" placeholder="Enter your email" id="email">
-            </div>
-            <div class="form-group">
-                <label for="credentials">Credentials</label>
-                <input type="password" class="form-control" placeholder="Enter your credentials" id="credentials">
-                <h6><small>Only numbers</small></h6>
-            </div>
-            <button type="submit" id="signupButton" class="btn btn-secondary btn-block" style="margin-top:4%" >OK</button>
+            
+                              
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" placeholder="Enter your full name" id="name" name="name">
+                </div>
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="text" class="form-control" placeholder="Enter your address" id="address" name="address" >
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input  type="email" class="form-control" placeholder="Enter your email" id="email" name="email" >
+                </div>
+                <div class="form-group">
+                    <label for="credentials">Credentials</label>
+                    <input type="password" class="form-control" placeholder="Enter your credentials" id="credentials" name="credentials">
+                    <h6><small>Only numbers</small></h6>
+                </div>
+                
+               
+                <button type="submit" id="signupButton" class="btn btn-secondary btn-block" style="margin-top:3%;">OK</button>
+                <br>
+                <h6 id="warning"> </h6>
+                
+
         </div>
 
 
 
-
-    </body>
+</body>
 
 </html>

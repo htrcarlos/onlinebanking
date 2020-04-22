@@ -18,40 +18,43 @@ import java.util.List;
 public class CustomerService {
 
     public static List<Customer> customers = new ArrayList();
-    public static List<Account> accounts = new ArrayList();
+
+    ; 
+    //public static List<Account> accounts = new ArrayList();
 
     public CustomerService() {
-        Customer c1 = new Customer(1, "Brian May", "45 Dalcassian", "brian@gmail.com", 123);
-        Customer c2 = new Customer(2, "Roger Taylor", "40 Connaught Street", "roger@gmail.com", 123);
-        Customer c3 = new Customer(3, "John Deacon", "2 Santry Avenue", "john@gmail.com", 123);
-        Customer c4 = new Customer(4, "Paul McCartney", "5 Melville Cove", "paul@gmail.com", 123);
 
+        Customer c1 = new Customer("Brian May", "45 Dalcassian", "brian@gmail.com", 123);
+        Customer c2 = new Customer("Roger Taylor", "40 Connaught Street", "roger@gmail.com", 123);
+        Customer c3 = new Customer("John Deacon", "2 Santry Avenue", "john@gmail.com", 123);
+        Customer c4 = new Customer("Paul McCartney", "5 Melville Cove", "paul@gmail.com", 123);
+
+        c1.setIdentifier(1);
+        c2.setIdentifier(2);
+        c3.setIdentifier(3);
+        c4.setIdentifier(4);
         customers.add(c1);
         customers.add(c2);
         customers.add(c3);
         customers.add(c4);
 
-        Account a1 = new Account(101);
-        Account a2 = new Account(102);
-        Account a3 = new Account(102);
-        Account a4 = new Account(103);
-        Account a5 = new Account(103);
-        Account a6 = new Account(103);
-        Account a7 = new Account(104);
-        Account a8 = new Account(105);
+        c1.addAccount(new Account(101));
+        c2.addAccount(new Account(102));
+        c2.addAccount(new Account(102));
+        c3.addAccount(new Account(103));
+        c3.addAccount(new Account(103));
+        c3.addAccount(new Account(103));
+        c4.addAccount(new Account(104));
 
-        c1.addAcount(a1);
-        c2.addAcount(a2);
-        c2.addAcount(a3);
-        c3.addAcount(a4);
-        c3.addAcount(a5);
-        c3.addAcount(a6);
-        c4.addAcount(a7);
-        c4.addAcount(a8);
     }
 
     public Customer createCustomer(Customer c) {
         c.setIdentifier(customers.size() + 1);
+        for (Customer auxCustomer : customers) {
+            if (auxCustomer.getEmail().equalsIgnoreCase(c.getEmail())) {
+                return null;
+            }
+        }
         customers.add(c);
         return c;
     }
@@ -59,7 +62,7 @@ public class CustomerService {
     public Account createAccount(String email, int sortCode) {
         for (Customer c : customers) {
             if (c.getEmail().equalsIgnoreCase(email)) {
-                c.addAcount(new Account(sortCode));
+                c.addAccount(new Account(sortCode));
                 return c.getAccounts().get(c.getAccounts().size() - 1);
 
             }
@@ -147,12 +150,14 @@ public class CustomerService {
                                     double newBalance = a1.getCurrentBalance() - value;
                                     Transaction t1 = new Transaction('T', value, "Transfer OUT", newBalance);
                                     a1.addTransaction(t1);
+
                                     transactions.add(t1);
 
                                     newBalance = a2.getCurrentBalance() + value;
                                     Transaction t2 = new Transaction('T', value, "Transfer IN", newBalance);
                                     a2.addTransaction(t2);
                                     transactions.add(t2);
+
                                     return transactions;
                                 }
                             }
@@ -181,25 +186,45 @@ public class CustomerService {
         return null;
     }
 
-    public Customer customerLogin(String email, int credentials){
-         for (Customer c : customers) {
-             if (c.getEmail().equalsIgnoreCase(email) && c.getCredentials()==credentials)
-                 return c;
-         }
+    public Customer customerLogin(String email, int credentials) {
 
-         return null;
+        for (Customer c : customers) {
+            if ((c.getEmail().equalsIgnoreCase(email)) && (c.getCredentials() == credentials)) {
+                return c;
+            }
+        }
+
+        return null;
     }
 
     public List<Customer> getList() {
-       return customers;
+        return customers;
     }
 
     public Customer getCustomer(int identifier) {
         for (Customer c : customers) {
-             if (c.getIdentifier() == identifier)
-                 return c;
-         }
+            if (c.getIdentifier() == identifier) {
+                return c;
+            }
+        }
 
-         return null;
+        return null;
     }
+
+    public List<Account> getAllAccounts(int s, int a) {
+        List<Account> allAccounts = new ArrayList<>();
+        int j = 0;
+        for (Customer c : getList()) {
+
+            for (int i = 0; i < c.getAccounts().size(); i++) {
+                if (c.getAccounts().get(i).getSortCode() != s && c.getAccounts().get(i).getAccountNumber() != a) {
+                    allAccounts.add(j, c.getAccounts().get(i));
+                    j++;
+
+                }
+            }  
+        }
+         return allAccounts;
+    }
+    
 }

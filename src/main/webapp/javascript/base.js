@@ -19,7 +19,7 @@ function getValueFromSession(key) {
 }
 
 function isCustomerLoggedIn() {
-    return typeof getCustomerIdentifier() == 'number';
+    return typeof getCustomerIdentifier() === 'number';
 }
 
 function logout() {

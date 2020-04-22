@@ -12,20 +12,23 @@ import java.util.List;
  *
  * @author Luciana
  */
-
 public class Account {
-    
+
     private static int aux = 1;
-    
+
     private int sortCode;
     private int accountNumber;
     private double currentBalance;
     private List<Transaction> transaction;
 
     public Account(int sortCode) {
-        this.sortCode = sortCode;
-        this.accountNumber = sortCode+(aux*10);
-        this.currentBalance = 125;
+        if (sortCode == 100) {
+            this.sortCode = sortCode++;
+        } else {
+            this.sortCode = sortCode;
+        }
+        this.accountNumber = sortCode + (aux);
+        this.currentBalance = 0.0;
         this.transaction = new ArrayList();
         aux++;
     }
@@ -59,11 +62,8 @@ public class Account {
     }
 
     public void addTransaction(Transaction transaction) {
+        setCurrentBalance(transaction.getPostBalance());
         this.transaction.add(transaction);
     }
-    
-    
-    
-    
-    
+
 }

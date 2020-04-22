@@ -6,10 +6,17 @@
 
         <title> Online Banking </title>
         <meta charset="UTF-8"> <!-- HTML5 charset -->
+
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
         <script src="javascript/base.js"></script>
         <script src="javascript/options.js"></script>
+
+
+
 
 
 
@@ -34,26 +41,107 @@
                 </li>
             </ul>
         </nav>
-        <div class="mx-auto w-50" style="margin-top:6%">
-            <div class="row" id="customerData" style="margin-top:3%">
+        <div class="mx-auto w-75" style="margin-top:6%">
+            <div class="row justify-content-center bg-light mw-100 rounded border border-secondary" style="padding: 0.4% 0 0.4% 0; margin: 0%" id="customerData">
+                <span class="align-middle font-weight-normal lead" id="hello">  
+                </span>  
+            </div>
+            <div class="row mw-100" style="margin-top:3%; margin-right: 0%; margin-left: 0%"> 
+                <div class="col-6" style="padding: 0px;">
+                    <div class="dropdown">
+                        <button type="button"  id="allAccounts" class="dropdown dropright btn btn-light dropdown-toggle btn-block" data-toggle="dropdown">
+                            Your Account(s)</button>
+                        <div class="dropdown-menu w-100" id="accounts">
+                            <div class="dropdown-header text-info text-center" style="margin-bottom: 10px; padding: 0px;">Sort code - Acc. number</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2" style="padding: 0px;">
+                </div>
+                <div class="col-4 d-flex flex-row-reverse" style="padding: 0px;">
+                    <button type="button" class="btn btn-outline-secondary btn-block" id="newAccountButtonDiv">New Account</button>
+                </div>
+            </div>
+
+            <div class="row w-100" id="container" style="position: relative;  margin:0px" >
+                <div id="accordion" class="w-100" style="visibility:hidden; margin:0px">
+                    <p class="text-info text-center" id="currentAccount" style="margin-top:2%; margin-bottom: 2%; visibility:hidden"></p>
+                    <div class="card">
+                        <div class="card-header">
+                            <button type="button" class="btn btn-outline-secondary btn-block" id="getBalance" data-toggle="collapse" data-target="#collapseOne">Balance</button>
+                        </div>
+                        <div id="collapseOne" class="collapse" data-parent="#accordion">
+                            <div class="card-body">
+                                <h6 class="text-info" id="currentBalance"></h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <button type="button" class="btn btn-outline-secondary btn-block" id="newLodgement" data-toggle="collapse" data-target="#collapseTwo">Lodgement</button>
+                        </div>
+                        <div id="collapseTwo" class="collapse" data-parent="#accordion">
+                                <div class="card-body"  id="newLodgmenteOK">
+                                    
+                                    
+                                </div>
+                            </div>       
+                        
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <button type="button" class="btn btn-outline-secondary btn-block" id="newWithdrawal" data-toggle="collapse" data-target="#collapseThree">Withdrawal</button>
+                        </div>
+                        <div id="collapseThree" class="collapse" data-parent="#accordion">
+                            <div class="card-body" id="newWithdrawalOK">
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <button type="button" class="btn btn-outline-secondary btn-block" id="newTransfer" data-toggle="collapse" data-target="#collapseFour">Transfer</button>
+                        </div>
+                        <div id="collapseFour" class="collapse" data-parent="#accordion">
+                            <div class="card-body">
+                                <div class="card-body" id="newTransferOK" style="padding:0">
+                                
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <button type="button" class="btn btn-outline-secondary btn-block" data-toggle="collapse" data-target="#collapseFive">History of Transactions</button>
+                        </div>
+                        <div id="collapseFive" class="collapse" data-parent="#accordion">
+                            <div class="card-body">
+                                conteudo history of transaction
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row w-100" id="newAccountDiv" style="margin-top:2%; margin-bottom: 2%; visibility: hidden; position: absolute;">
+                    <div class="w-100" id="newAccountInner" style="position: relative">
+
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
 
 
 
             </div>
-            <h5 class="text-center">Transactions</h5>
-
-            <div class="row" style="margin-top:3%">
-
-                <button type="button" class="btn btn-outline-secondary btn-block" onclick="window.location.href = 'balance.html';">Balance</button>
-                <button type="button" class="btn btn-outline-secondary  btn-block">Transfer</button>
-                <button type="button" class="btn btn-outline-secondary btn-block" onclick="window.location.href = 'lodgement.html';">Lodgement</button>
-                <button type="button" class="btn btn-outline-secondary  btn-block">Withdrawal</button>
-                <button type="button" class="btn btn-outline-secondary  btn-block">History of Transactions</button>
 
 
-            </div>
 
-        </div>
+
+        
+
     </body>
 
 </html>

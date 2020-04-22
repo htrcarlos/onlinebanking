@@ -16,8 +16,6 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 import javax.servlet.http.HttpServlet;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -27,7 +25,6 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-
 /**
  *
  * @author Luciana
@@ -35,8 +32,8 @@ import javax.ws.rs.core.Response;
 @Path("/onlinebanking")
 public class CustomerResource extends HttpServlet {
 
-    CustomerService cs = new CustomerService();
-    Gson gson = new Gson();
+    public static CustomerService cs = new CustomerService();
+    public static Gson gson = new Gson();
 
     @GET
     @Path("/customer/{identifier}")
@@ -56,15 +53,20 @@ public class CustomerResource extends HttpServlet {
     @Path("/createCustomer")
     @Produces(MediaType.APPLICATION_JSON)
     public Response createCustomer(String body) throws UnsupportedEncodingException, IOException {
-        Customer c = gson.fromJson(body, Customer.class);
+        Customer requestData = gson.fromJson(body, Customer.class);
+        Customer c = new Customer(requestData.getName(), requestData.getAddress(), requestData.getEmail(), requestData.getCredentials());
         Customer customer = cs.createCustomer(c);
-        System.out.println(cs.getList().size());
-        return Response.status(Response.Status.CREATED).entity(gson.toJson(customer)).build();
+        if (customer != null) {
+            return Response.status(Response.Status.CREATED).entity(gson.toJson(customer)).build();
+        } else {
+            return Response.status(404).build();
+        }
     }
 
-    @POST
-    @Path("{param}/createAccount")
-    public Response createAccount(@PathParam("param") int sortCode, @QueryParam("email") String email) {
+    @GET
+    @Path("{email}/createAccount")
+    public Response createAccount(@PathParam("email") String email, @QueryParam("sortCode") int sortCode) {
+
         Account account = cs.createAccount(email, sortCode);
 
         return Response.status(Response.Status.CREATED).entity(gson.toJson(account)).build();
@@ -73,7 +75,8 @@ public class CustomerResource extends HttpServlet {
     @GET
     @Path("{sortCode}/{accountNumber}/newLodgement")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response newLodgement(@PathParam("sortCode") int sortCode, @PathParam("accountNumber") int accountNumber, @QueryParam("value") double value) {
+    public Response newLodgement(@PathParam("sortCode") int sortCode, @PathParam("accountNumber") int accountNumber, @QueryParam("valueLodgement") double value) {
+
         Transaction transaction = cs.newLodgement(sortCode, accountNumber, value);
 
         return Response.status(Response.Status.CREATED).entity(gson.toJson(transaction)).build();
@@ -83,10 +86,13 @@ public class CustomerResource extends HttpServlet {
     @GET
     @Path("{sortCode}/{accountNumber}/newWithdrawal")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response newWithdrawal(@PathParam("sortCode") int sortCode, @PathParam("accountNumber") int accountNumber, @QueryParam("value") double value) {
+    public Response newWithdrawal(@PathParam("sortCode") int sortCode, @PathParam("accountNumber") int accountNumber, @QueryParam("valueWithdrawal") double value) {
         Transaction transaction = cs.newWithdrawal(sortCode, accountNumber, value);
-
-        return Response.status(Response.Status.CREATED).entity(gson.toJson(transaction)).build();
+        if (transaction != null) {
+            return Response.status(Response.Status.CREATED).entity(gson.toJson(transaction)).build();
+        } else {
+            return Response.status(404).build();
+        }
     }
 
     //curl -vi -X GET -G "http://localhost:49000/api/onlinebanking/101/111/getBalance"
@@ -104,9 +110,13 @@ public class CustomerResource extends HttpServlet {
     @Path("{sortCode}/{accountNumber}/newTransfer")
     @Produces(MediaType.APPLICATION_JSON)
     public Response newTransfer(@PathParam("sortCode") int sortCode, @PathParam("accountNumber") int accountNumber, @QueryParam("destinSortCode") int destinSortCode, @QueryParam("destinAccountNumber") int destinAccountNumber, @QueryParam("value") double value) {
-        List<Transaction> transaction = cs.newTransfer(sortCode, accountNumber, destinSortCode, destinAccountNumber, value);
 
-        return Response.status(Response.Status.CREATED).entity(gson.toJson(transaction)).build();
+        List<Transaction> transaction = cs.newTransfer(sortCode, accountNumber, destinSortCode, destinAccountNumber, value);
+        if (transaction != null) {
+            return Response.status(Response.Status.CREATED).entity(gson.toJson(transaction)).build();
+        } else {
+            return Response.status(404).build();
+        }
     }
 
     @GET
@@ -128,7 +138,17 @@ public class CustomerResource extends HttpServlet {
         if (customer != null) {
             return Response.status(Response.Status.OK).entity(gson.toJson(customer)).build();
         } else {
-            return Response.status(Response.Status.NOT_FOUND).entity(gson.toJson(RequestError.customerNotFound)).build();
+            return Response.status(404).build();
         }
+    }
+
+    @GET
+    @Path("/getAllAccounts")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAllAccounts(@QueryParam("sourceCode") int sourceCode, @QueryParam("accountNumber") int accountNumber ) {
+
+        List<Account> accounts = cs.getAllAccounts(sourceCode,accountNumber);
+
+        return Response.status(Response.Status.CREATED).entity(gson.toJson(accounts)).build();
     }
 }

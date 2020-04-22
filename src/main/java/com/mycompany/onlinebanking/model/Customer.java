@@ -12,27 +12,29 @@ import java.util.List;
  *
  * @author Luciana
  */
-
 public class Customer {
+
+    private static final int defaultSortCode = 100;
 
     private int identifier;
     private String name;
     private String address;
     private String email;
     private int credentials;
-    private List<Account> accounts;
+    private final List<Account> accounts;
 
-    public Customer(int identifier,
-                    String name,
-                    String address,
-                    String email,
-                    int credentials) {
-        this.identifier = identifier;
+    public Customer(String name,
+            String address,
+            String email,
+            int credentials) {
+
         this.name = name;
         this.address = address;
         this.email = email;
         this.credentials = credentials;
-        this.accounts = new ArrayList();
+        accounts = new ArrayList();
+        this.accounts.add(0, new Account(defaultSortCode));
+
     }
 
     public int getIdentifier() {
@@ -79,7 +81,7 @@ public class Customer {
         return accounts;
     }
 
-    public void addAcount(Account account) {
+    public void addAccount(Account account) {
         this.accounts.add(account);
     }
 

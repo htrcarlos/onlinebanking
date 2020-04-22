@@ -9,9 +9,11 @@ $(function () {
                 credentials: parseInt($("#credentials").val())
             }),
             dataType: 'json',
-            contentType: 'application/json'
-       }).then(function (customer) {
-            if (customer == null) { return; }
+            contentType: 'application/json',
+            error: function () {
+                document.getElementById("invalid").style.visibility = "visible";
+            }
+        }).then(function (customer) {
             setCustomerIdentifier(customer.identifier);
             window.location.href = 'options.html';
         });
