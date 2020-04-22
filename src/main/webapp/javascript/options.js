@@ -144,9 +144,9 @@ $(document).ready(function () {
             document.getElementById("accordion").style.visibility = "hidden";
             document.getElementById("newAccountDiv").style.visibility = "hidden";
             document.getElementById("newAccountInner").style.visibility = "hidden";
-            document.getElementById("invalidWithdrawal").innerHTML = "";
-            document.getElementById("invalidLodgement").innerHTML = "";
-            document.getElementById("invalidTransfer").innerHTML = "";
+            $('#invalidWithdrawal').html('');
+            $('invalidLodgement').html('');
+            $('invalidTransfer').html('');
 
             return;
         });
@@ -183,9 +183,9 @@ $(document).ready(function () {
             <h6 style='visibility:hidden' id='invalidTransfer' class='text-danger'><small>Invalid value entered</small></h6>\n\
             <button type='submit' id='newTransferButton' class='btn btn-secondary btn-block' style='margin-top:3%'>OK</button>";
             $("#newTransferOK").append(html);
-            
+
             $("#newTransferButton").click(function () {
-                
+
                 var value = parseFloat($("#valueTransfer").val());
                 if (isNaN(value) || value <= 0) {
                     document.getElementById("invalidTransfer").innerHTML = "<h6 style='visibility:visible' id='invalidWithdrawal' class='text-danger'><small>Invalid value entered</small></h6>";
@@ -193,9 +193,9 @@ $(document).ready(function () {
                  var i = $('#sourceAccount').val();
                 var sortCode1 = customer.accounts[i].sortCode;
                 var accountNumber1 = customer.accounts[i].accountNumber;
-                
+
                 var i = $('#destinAcccount').val();
-               
+
                     $.ajax({
                         type: 'GET',
                         url: 'api/onlinebanking/' + sortCode1 + '/' + accountNumber1 + '/newTransfer',
@@ -221,9 +221,9 @@ $(document).ready(function () {
                     <h6 class='text-muted'>" + transactions[1].description + "</h6>\n\
                 </div>\n\
                 <button type='button' id='confirmTransfer' class='btn btn-secondary btn-block' style='margin-top:3%'>OK</button>";
-                  document.getElementById("newTransferOK").style.visibility = "visible";    
+                  document.getElementById("newTransferOK").style.visibility = "visible";
                     $("#confirmTransfer").click(function () {
-                            document.getElementById("newTransferOK").innerHTML= ""; 
+                            document.getElementById("newTransferOK").innerHTML= "";
                             $("#collapseFour").collapse("hide");
                             return;
                         });
@@ -231,14 +231,14 @@ $(document).ready(function () {
                 }
             });
 
-                
+
             });
 
         });
 
-        
+
         //PARTE DO CÓDIGO QUE ADICIONA NOVA CONTA
-        
+
         $("#newAccountButtonDiv").click(function () {
 
            document.getElementById("newTransferOK").innerHTML = "";
@@ -253,7 +253,7 @@ $(document).ready(function () {
             <br>Account Number will be generated automatically</h6>\n\
             <button type='submit' id='newAccountButton' class='btn btn-secondary btn-block' style='margin-top:8%'>OK</button>";
 
-            
+
             $("#newAccountButton").click(function () {
                 $.ajax({
                     type: 'GET',
@@ -267,41 +267,37 @@ $(document).ready(function () {
                 <h6  class='text-info'>Sort Code</h6><h6 class='text-muted'>" + account.sortCode + "</h6>\n\
                  <h6  class='text-info'>Account Number</h6><h6 class='text-muted'>" + account.accountNumber + "</h6>\n\
                  <h6  class='text-info'>Current Balance</h6><h6 class='text-muted'>" + account.currentBalance + ".0 \u20AC</h6>\n\
-                 <button type='submit' id='confirmNewAccount' class='btn btn-secondary btn-block' style='margin-top:3 %'>Confirm</button>";
+                 <button type='submit' id='confirmNewAccount' class='btn btn-secondary btn-block' style='margin-top:3 %'>Close</button>";
                     document.getElementById("newAccountInner").style.visibility = "visible";
+
+                    var newButton = document.createElement("button");
+                    let accountIndex = customer.accounts.length;
+
+                    customer.accounts.push(account);
+                    newButton.innerText = account.sortCode + " - " + account.accountNumber;
+                    newButton.id = "account" + accountIndex;
+                    newButton.setAttribute('class', 'btn btn-light btn-block');
+                    newButton.setAttribute('index', accountIndex);
+                    newButton.addEventListener("click", buttonClicked(accountIndex));
+                    $("#accounts").append(newButton);
 
                     //PARTE DO CÓDIGO QUE ADICIONA NOVA CONTA A LISTA DE CODIGOS EXISTENTS NO CANTO ESQUERDOS SUPERIOR DA TELA
                     $("#confirmNewAccount").click(function () {
-                        var newButton = document.createElement("button");
-                        let i = customer.accounts.length - 1;
-                        customer.accounts[i] = account;
-                        newButton.innerText = account.sortCode + " - " + account.accountNumber;
-                        newButton.id = "account" + i;
-                        newButton.setAttribute('class', 'btn btn-light btn-block');
-                        newButton.setAttribute('index', i);
-                        newButton.addEventListener("click", buttonClicked(i));
                         document.getElementById("newAccountInner").style.visibility = "hidden";
                         document.getElementById("newAccountDiv").style.visibility = "hidden";
-                        $("#accounts").append(newButton);
-
                         return;
                     });
 
                 });
             });
-            
+
             document.getElementById("newAccountInner").style.visibility = "visible";
             document.getElementById("newAccountDiv").style.visibility = "visible";
             document.getElementById("accordion").style.visibility = "hidden";
             document.getElementById("currentAccount").innerHTML = "";
-            document.getElementById("invalidWithdrawal").innerHTML = "";
-            document.getElementById("invalidLodgement").innerHTML = "";
-            document.getElementById("invalidTransfer").innerHTML = "";
-            
-            
-
-
-
+            $('invalidWithdrawal').html('');
+            $('invalidLodgement').html('');
+            $('invalidTransfer').html('');
         });
 
     });
